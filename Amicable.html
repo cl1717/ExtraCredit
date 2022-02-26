@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Amicable Numbers</title>
+        <style type="text/css">
+        </style>
+        <script language="javascript">
+            function divSum(n) {
+                divisorSum = 0;
+                factors = [1];
+                //find all divisors of n
+                for (i = 2; i <= Math.sqrt(n); i++) {
+                    if (n % i == 0) { // i is a divisor of n
+                        if (i == (n / i)) {
+                            divisorSum += i; 
+                            factors.push(i);
+                            //add i once if the two divisors are the same
+                        } else {
+                            divisorSum += (i + n/i);
+                            //add both i and n/i to the sum if they are different
+                            factors.push(i, n/i);
+                        }
+                    }
+                }
+                factors.sort(function(a, b){return a-b});
+                text = factors.toString();
+                alert("The factors of "+n+ " are: "+text);
+                //add 1 to the final result
+                return (divisorSum + 1);
+            }
+            function buttonPress() {
+                if (document.getNums.number1.value !="" && document.getNums.number2.value !="") {
+                    //get form data
+                    const form = document.getElementById('getNums');
+                    num1 = form.elements[0];
+                    num2 = form.elements[1];
+                    Num1 = num1.value;
+                    Num2 = num2.value;
+                    //check amicability
+                    divSumNum1 = divSum(Num1);
+                    divSumNum2 = divSum(Num2);
+                    if (divSumNum1 == Num2 &&  divSumNum2 == Num1) {
+                        document.getElementById("result").innerHTML = "The numbers "+Num1 + " and "+Num2+" are amicable";
+                    } else {
+                        document.getElementById("result").innerHTML = "The numbers "+Num1 + " and "+Num2+" are not amicable";
+                    }
+                } else {
+                    //missing data
+                    alert("Please enter the data");
+                } 
+            }
+        </script>
+    </head>
+    <body>
+        <form name="getNums" id="getNums">
+            Number 1: <input type="number" name ="number1" id="number1"> <br />
+            Number 2: <input type="number" name ="number2" id="number2"> <br />
+            <input type="button" name ="Submit" value="Submit" id="Submit" onclick="buttonPress()"> <br />
+        </form>
+        <div id="result">&nbsp</div>
+    </body>
+</html>

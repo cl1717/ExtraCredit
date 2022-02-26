@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Joe's Hotdog Stand</title>
+        <style type="text/css">
+        </style>
+        <script language="javascript">
+            function buttonPress() {
+                //validate
+                numItems = document.getNums.selHotdogs.value + document.getNums.selFries.value + document.getNums.selSodas.value;
+                if (numItems == 0) {
+                    alert("Error: No items have been ordered");
+                } else {
+                    //get form data
+                    const form = document.getElementById('getNums');
+                    numHotdogs = form.elements[0];
+                    numFries = form.elements[1];
+                    numSodas = form.elements[2];
+                    NumHotdogs = numHotdogs.value;
+                    NumFries = numFries.value;
+                    NumSodas = numSodas.value;
+
+                    //tally
+                    originalSubtotal = NumHotdogs * 3.75 + NumFries * 2 + NumSodas * 1.8;
+                    discountAmount = 0;
+                    if (originalSubtotal >= 20){
+                    discountAmount = originalSubtotal * 0.1;
+                    }
+                    discountedSubtotal = originalSubtotal - discountAmount;
+                    tax = discountedSubtotal * 0.0625;
+                    finalSubtotal = discountedSubtotal + tax;
+
+                    //print
+                    order = "Your order: "+NumHotdogs+" hotdogs, "+NumFries+" fries, "+NumSodas+" sodas <br /> <br />";   
+                    subtotal1 = "Subtotal: $"+originalSubtotal.toFixed(2)+"<br /> Discounted Amount: $"+discountAmount.toFixed(2);
+                    subtotal2 = "<br />Subtotal (before tax): $"+discountedSubtotal.toFixed(2)+ "<br /> Tax: $"+tax.toFixed(2);
+                    finalTotal = "<br /> <br /> Total (final): $"+finalSubtotal.toFixed(2);
+                    output = order + subtotal1 + subtotal2 + finalTotal;
+
+                    document.getElementById("result").innerHTML = output;
+                }            
+            }         
+        </script>
+    </head>
+    <body>
+        <form name="getNums" id="getNums">
+            <strong>Hotdogs</strong><br />
+            Price: $3.75 each <br />
+            Quantity: 
+            <select name="selHotdogs" id="selHotdogs">
+                <option value="0"></option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+            </select> <br /> <br />
+            <strong>Fries</strong><br />
+            Price: $2 each <br />
+            Quantity: 
+            <select name="selFries" id="selFries">
+                <option value="0"></option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+            </select> <br /> <br />
+            <strong>Sodas</strong><br />
+            Price: $1.8 each <br />
+            Quantity: 
+            <select name="selSodas" id="selSodas">
+                <option value="0"></option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+            </select> <br /> <br />
+        </form>
+        <input type="button" name ="Submit" value="Submit" id="Submit" onclick="buttonPress()"> <br /> <br /> <br />
+        <div id="result">&nbsp</div>
+    </body>
+</html>
