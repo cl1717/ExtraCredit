@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<title>Jump</title>
+<script>
+    $(document).ready (function(){
+        $("#jump").click(function() {
+            if($("#jump").val() == "JUMP >") {
+                document.getElementById("right").value = document.getElementById("left").value;
+                document.getElementById("left").value = "";
+                document.getElementById("jump").value = "< JUMP";
+            }
+            else {
+                document.getElementById("left").value = document.getElementById("right").value;
+                document.getElementById("right").value = "";
+                document.getElementById("jump").value = "JUMP >";
+            }
+        })
+    })
+
+</script>
+</head>
+
+<body>
+    <form>
+        <input type="text" id="left" value="">
+        <input type="button" id ="jump" value = "JUMP >">
+        <input type="text" id="right" value="">
+    </form>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<title>Check</title>
+<script>
+
+function switchall(){
+    var checkBox = document.getElementById("all");
+    var box1 = document.getElementById("first");
+    var box2 = document.getElementById("second");
+    var box3 = document.getElementById("third");
+    var box4 = document.getElementById("fourth");
+    // var labelvar = document.getElementsByTagName("label");
+    var allLabel = document.querySelector('label[for="all"]');
+
+
+
+    if (checkBox.checked == true){
+        box1.checked = true;
+        box2.checked = true;
+        box3.checked = true;
+        box4.checked = true;
+        allLabel.innerHTML = "Uncheck All";
+    }
+
+    if (checkBox.checked == false){
+        box1.checked = false;
+        box2.checked = false;
+        box3.checked = false;
+        box4.checked = false;
+        allLabel.innerHTML = "Check All";
+
+    }
+}
+
+</script>
+</head>
+
+<body>
+    <form>
+        <input type="checkbox" id="all" name="all" value="all" onclick="switchall()">
+        <label for="all"> Check All</label><br><br><br>
+        <input type="checkbox" id="first" name="first" value="first">
+        <label for="first">first</label><br>
+        <input type="checkbox" id="second" name="second" value="second">
+        <label for="second">second</label><br>
+        <input type="checkbox" id="third" name="third" value="third">
+        <label for="third">third</label><br>
+        <input type="checkbox" id="fourth" name="fourth" value="fourth">
+        <label for="fourth">fourth</label><br> 
+    </form>
+</body>
+</html>
